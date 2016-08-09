@@ -1,0 +1,10 @@
+extend layout
+
+block content
+    ul.list-group
+        each task in tasks
+            if task.completed
+                li.list-group-item
+                    | #{task.name}
+                    em= task.completedDate  
+                    

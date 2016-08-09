@@ -14,6 +14,12 @@ app.get('/tasks', function(req, res){
 		tasks: tasks
 	});
 });
+app.get('/completed', function(req, res){
+	res.render('completed', {
+		title: 'Todo',
+		tasks: tasks
+	});
+});
 app.use(bodyParser.urlencoded({ extended: false }));
 app.post('/tasks', function(req, res){
 	var newTask = {
@@ -23,6 +29,28 @@ app.post('/tasks', function(req, res){
 		completed: false
 	};
 	tasks.push(newTask);
+	res.redirect('/tasks');
+});
+app.post('/done', function(req, res){
+	var taskId = req.body.task;
+	
+	tasks.forEach(function(elem){
+		if(elem.id == taskId){
+			elem.completed = true;
+			elem.completedDate = new Date();
+		}
+	})
+	res.redirect('/tasks');
+});
+app.post('/delete', function(req, res){
+	var taskId = req.body.task;
+	var itemToDelete = null;
+	tasks.forEach(function(elem, i){
+		if(elem.id == taskId){
+			itemToDelete = i;
+		}
+	});
+	tasks.splice(itemToDelete, 1);
 	res.redirect('/tasks');
 });
 

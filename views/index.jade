@@ -1,24 +1,22 @@
-doctype html
-html(lang="en")
-  head
-    title=title
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
-    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
-  body
-    .container
-        h1=title
-        form.form(action="/tasks", method="POST")
-            .form-group
-                input.form-control(type="text", name="name", required)
-                button.btn.btn-primary(type="submit") Create task
-        p You have #{ tasks.length } tasks created
-        ul.list-group
-            each task in tasks
+extend layout
+
+block content
+    form.form(action="/tasks", method="POST")
+        .form-group
+            input.form-control(type="text", name="name", required)
+            button.btn.btn-primary(type="submit") Create task
+    ul.list-group
+        each task in tasks
+            if !task.completed
                 li.list-group-item
-                    button.btn.btn-success(title="Mark as completed")
-                        i.glyphicon.glyphicon-ok
+                    form(action="/delete", method="POST")
+                        input(type="hidden", name="task" value=task.id)
+                        button.btn.btn-danger.pull-right(title="Delete")
+                            i.glyphicon.glyphicon-trash
+                    form(action="/done", method="POST")
+                        input(type="hidden", name="task" value=task.id)
+                        button.btn.btn-success(type="submit", title="Mark as completed")
+                            i.glyphicon.glyphicon-ok
                     | #{task.name}
                     em= task.createdDate  
                     
-                    button.btn.btn-danger.pull-right(title="Delete")
-                        i.glyphicon.glyphicon-trash
