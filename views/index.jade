@@ -24,14 +24,18 @@ block content
         each task in tasks
             if !task.completed
                 li.list-group-item
-                    form(action="/delete", method="POST")
-                        input(type="hidden", name="task" value=task.id)
-                        button.btn.btn-danger.pull-right(title="Delete")
-                            i.glyphicon.glyphicon-trash
-                    form(action="/done", method="POST")
-                        input(type="hidden", name="task" value=task.id)
-                        button.btn.btn-success.pull-left(type="submit", title="Mark as completed")
-                            i.glyphicon.glyphicon-ok
+                    a.btn.btn-danger.pull-right.js-delete(href="/tasks?id="+task.id, title="Delete task")
+                        i.glyphicon.glyphicon-trash
+                    a.btn.btn-success.pull-left.js-complete(href="/tasks?id="+task.id, title="Mark as completed")
+                        i.glyphicon.glyphicon-ok
+                    //- form(action="/delete", method="POST")
+                    //-     input(type="hidden", name="task" value=task.id)
+                    //-     button.btn.btn-danger.pull-right(title="Delete")
+                    //-         i.glyphicon.glyphicon-trash
+                    //- form(action="/done", method="POST")
+                    //-     input(type="hidden", name="task" value=task.id)
+                    //-     button.btn.btn-success.pull-left(type="submit", title="Mark as completed")
+                    //-         i.glyphicon.glyphicon-ok
                     .task-desc
                         | #{task.name}
                         em= task.createdDate  
