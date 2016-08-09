@@ -12,7 +12,7 @@ app.use(express.static(__dirname + '/public'))
 
 app.get('/tasks', function(req, res){
 	var toDoTasks = tasks.filter(function(elem){
-		return elem.completed === false
+		return elem.completed === false;
 	});
 	setTimeout(function(){
 		justDeleted = false;
@@ -65,11 +65,11 @@ app.delete('/tasks', function(req, res){
 	justDeleted = true;
 	res.end();
 });
-app.post('/alldone', function(req, res){
+app.put('/alldone', function(req, res){
 	tasks.forEach(function(elem){
 		elem.completed = true;
 		elem.completedDate = new Date();
 	});
-	res.redirect('/tasks');
+	res.end();
 });
 app.listen('3000');

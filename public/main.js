@@ -23,3 +23,15 @@ $('.js-complete').click(function(e){
 		window.location = '/tasks';
 	});
 });
+
+$('#alldone').click(function(e){
+	e.preventDefault();
+	var url = $(this).attr('href');
+	$.ajax({
+		url: url,
+		type: 'put'	
+	})
+	.done(function(){
+		window.location = '/tasks';
+	});
+});

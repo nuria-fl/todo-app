@@ -14,10 +14,9 @@ block content
         .alert.alert-danger Task deleted
     if tasks.length > 1
         p
-            form(action="/alldone", method="POST")
-                button.btn.btn-success(type="submit")
-                    i.glyphicon.glyphicon-ok 
-                    |  Mark all as completed
+            a#alldone.btn.btn-success(href="/alldone")
+                i.glyphicon.glyphicon-ok 
+                |  Mark all as completed
     if !tasks.length
         p No tasks
     ul.list-group
