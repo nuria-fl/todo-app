@@ -10,6 +10,8 @@ block content
                         span.input-group-btn
                             button.btn.btn-primary(type="submit") Create task
     h2 To do:
+    if justDeleted
+        .alert.alert-danger Task deleted
     ul.list-group
         each task in tasks
             if !task.completed

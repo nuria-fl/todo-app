@@ -4,13 +4,16 @@ var jade = require('jade');
 var app = express();
 var counter = 0;
 var tasks = [];
+// var justDeleted = false;
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-
 app.use(express.static(__dirname + '/public'))
 
 app.get('/tasks', function(req, res){
+	setTimeout(function(){
+		justDeleted = false;
+	}, 100);
 	res.render('index', {
 		title: 'Todo',
 		tasks: tasks
@@ -31,6 +34,7 @@ app.post('/tasks', function(req, res){
 		completed: false
 	};
 	tasks.push(newTask);
+	
 	res.redirect('/tasks');
 });
 app.post('/done', function(req, res){
@@ -53,6 +57,7 @@ app.post('/delete', function(req, res){
 		}
 	});
 	tasks.splice(itemToDelete, 1);
+	justDeleted = true;
 	res.redirect('/tasks');
 });
 
