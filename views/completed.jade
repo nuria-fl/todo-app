@@ -10,5 +10,5 @@ block content
                 li.list-group-item
                     .task-desc.done
                         | #{task.name} 
-                        em Completed on #{task.completedDate}
+                        em Completed on #{moment(task.completedDate).format('MMMM Do YYYY, h:mm a')} 
                     

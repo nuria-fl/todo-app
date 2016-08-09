@@ -5,6 +5,8 @@ var app = express();
 var counter = 0;
 var tasks = [];
 
+app.locals.moment = require('moment');
+
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public'));

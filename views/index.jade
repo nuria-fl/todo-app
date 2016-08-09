@@ -28,5 +28,4 @@ block content
                         i.glyphicon.glyphicon-ok
                     .task-desc
                         | #{task.name}
-                        em= task.createdDate  
-                    
+                        em #{moment(task.createdDate).format('MMMM Do YYYY, h:mm a')} 
