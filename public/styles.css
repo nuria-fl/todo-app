@@ -1,0 +1,17 @@
+.list-group-item:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.task-desc {
+	padding: 6px 6px 6px 50px;
+}
+.task-desc.done {
+	padding-left: 6px;
+	text-decoration: line-through;
+}
+.task-desc em {
+	display: inline-block;
+	margin-left: 10px;
+	color: #999;
+}

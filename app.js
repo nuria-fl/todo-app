@@ -8,6 +8,8 @@ var tasks = [];
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
+app.use(express.static(__dirname + '/public'))
+
 app.get('/tasks', function(req, res){
 	res.render('index', {
 		title: 'Todo',

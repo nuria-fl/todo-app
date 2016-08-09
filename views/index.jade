@@ -1,10 +1,15 @@
 extend layout
 
 block content
-    form.form(action="/tasks", method="POST")
-        .form-group
-            input.form-control(type="text", name="name", required)
-            button.btn.btn-primary(type="submit") Create task
+    .row
+        .col-sm-6
+            form.form(action="/tasks", method="POST")
+                .form-group
+                    .input-group
+                        input.form-control(type="text", name="name", required)
+                        span.input-group-btn
+                            button.btn.btn-primary(type="submit") Create task
+    h2 To do:
     ul.list-group
         each task in tasks
             if !task.completed
@@ -15,8 +20,9 @@ block content
                             i.glyphicon.glyphicon-trash
                     form(action="/done", method="POST")
                         input(type="hidden", name="task" value=task.id)
-                        button.btn.btn-success(type="submit", title="Mark as completed")
+                        button.btn.btn-success.pull-left(type="submit", title="Mark as completed")
                             i.glyphicon.glyphicon-ok
-                    | #{task.name}
-                    em= task.createdDate  
+                    .task-desc
+                        | #{task.name}
+                        em= task.createdDate  
                     
