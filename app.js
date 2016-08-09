@@ -48,6 +48,13 @@ app.post('/done', function(req, res){
 	})
 	res.redirect('/tasks');
 });
+app.post('/alldone', function(req, res){
+	tasks.forEach(function(elem){
+		elem.completed = true;
+		elem.completedDate = new Date();
+	})
+	res.redirect('/tasks');
+});
 app.post('/delete', function(req, res){
 	var taskId = req.body.task;
 	var itemToDelete = null;

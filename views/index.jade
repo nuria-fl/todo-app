@@ -12,6 +12,12 @@ block content
     h2 To do:
     if justDeleted
         .alert.alert-danger Task deleted
+    if tasks.length
+        p
+            form(action="/alldone", method="POST")
+                button.btn.btn-success(type="submit")
+                    i.glyphicon.glyphicon-ok 
+                    |  Mark all as completed
     ul.list-group
         each task in tasks
             if !task.completed
