@@ -11,18 +11,31 @@ app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public'))
 
 app.get('/tasks', function(req, res){
+	var toDoTasks = [];
 	setTimeout(function(){
 		justDeleted = false;
 	}, 100);
+	
+	tasks.forEach(function(elem){
+		if(elem.completed === false){
+			toDoTasks.push(elem)
+		}
+	})
 	res.render('index', {
 		title: 'Todo',
-		tasks: tasks
+		tasks: toDoTasks
 	});
 });
 app.get('/completed', function(req, res){
+	var doneTasks = [];
+	tasks.forEach(function(elem){
+		if(elem.completed === true){
+			doneTasks.push(elem)
+		}
+	})
 	res.render('completed', {
 		title: 'Todo',
-		tasks: tasks
+		tasks: doneTasks
 	});
 });
 app.use(bodyParser.urlencoded({ extended: false }));

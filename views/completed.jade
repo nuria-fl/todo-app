@@ -2,6 +2,8 @@ extend layout
 
 block content
     h2 Completed tasks
+    if !tasks.length
+        p No tasks
     ul.list-group
         each task in tasks
             if task.completed
