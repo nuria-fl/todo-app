@@ -10,8 +10,7 @@ block content
                         span.input-group-btn
                             button.btn.btn-primary(type="submit") Create task
     h2 To do:
-    if justDeleted
-        .alert.alert-danger Task deleted
+    .alert.alert-danger(style="display:none") Task deleted
     if tasks.length > 1
         p
             a#alldone.btn.btn-success(href="/alldone")
@@ -27,14 +26,6 @@ block content
                         i.glyphicon.glyphicon-trash
                     a.btn.btn-success.pull-left.js-complete(href="/tasks?id="+task.id, title="Mark as completed")
                         i.glyphicon.glyphicon-ok
-                    //- form(action="/delete", method="POST")
-                    //-     input(type="hidden", name="task" value=task.id)
-                    //-     button.btn.btn-danger.pull-right(title="Delete")
-                    //-         i.glyphicon.glyphicon-trash
-                    //- form(action="/done", method="POST")
-                    //-     input(type="hidden", name="task" value=task.id)
-                    //-     button.btn.btn-success.pull-left(type="submit", title="Mark as completed")
-                    //-         i.glyphicon.glyphicon-ok
                     .task-desc
                         | #{task.name}
                         em= task.createdDate  

@@ -11,11 +11,12 @@ html(lang="en")
                 .navbar-header
                     a.navbar-brand(href="/tasks")=title
                 ul.nav.navbar-nav
-                    li
+                    li(class=(currentUrl === '/tasks')? "active" : "")
                         a(href="/tasks") Tasks
-                    li
+                    li(class=(currentUrl === '/completed')? "active" : "")
                         a(href="/completed") Completed
     .container
         block content
+    
     script(src="https://code.jquery.com/jquery-2.2.4.min.js")
     script(src="/main.js")

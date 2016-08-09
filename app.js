@@ -4,22 +4,19 @@ var jade = require('jade');
 var app = express();
 var counter = 0;
 var tasks = [];
-// var justDeleted = false;
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/public'));
 
 app.get('/tasks', function(req, res){
 	var toDoTasks = tasks.filter(function(elem){
 		return elem.completed === false;
 	});
-	setTimeout(function(){
-		justDeleted = false;
-	}, 100);
 	res.render('index', {
 		title: 'Todo',
-		tasks: toDoTasks
+		tasks: toDoTasks,
+		currentUrl: req.url
 	});
 });
 app.get('/completed', function(req, res){
@@ -28,7 +25,8 @@ app.get('/completed', function(req, res){
 	});
 	res.render('completed', {
 		title: 'Todo',
-		tasks: doneTasks
+		tasks: doneTasks,
+		currentUrl: req.url
 	});
 });
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -62,7 +60,6 @@ app.delete('/tasks', function(req, res){
 		}
 	});
 	tasks.splice(itemToDelete, 1);
-	justDeleted = true;
 	res.end();
 });
 app.put('/alldone', function(req, res){
